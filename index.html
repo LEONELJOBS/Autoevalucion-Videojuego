@@ -1,0 +1,1795 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121715" />
+  <meta name="description" content="Portafolio de evaluación del videojuego Kusi — Las Tres Aguas." />
+  <title>Kusi — Las Tres Aguas | Portafolio de Evaluación</title>
+  <style>
+    :root {
+      --bg: #0e1312;
+      --surface: #151c1a;
+      --surface-2: #1b2522;
+      --text: #f6f2e7;
+      --muted: #afbbb4;
+      --gold: #e3b650;
+      --gold-2: #ffd975;
+      --teal: #66c6b1;
+      --sky: #89bfd4;
+      --red: #df6c63;
+      --line: rgba(255,255,255,.09);
+      --shadow: 0 20px 60px rgba(0,0,0,.32);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(227,182,80,.10), transparent 28rem),
+        radial-gradient(circle at 90% 22%, rgba(102,198,177,.08), transparent 30rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,.025) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,.02) 25%, transparent 25%);
+      background-size: 18px 18px;
+      mask-image: linear-gradient(to bottom, #000, transparent 70%);
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(14,19,18,.76);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .brand-mark {
+      width: 34px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #101613;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      box-shadow: 0 8px 24px rgba(227,182,80,.22);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links a {
+      color: var(--muted);
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: .9rem;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.05); }
+
+    .hero {
+      min-height: 560px;
+      display: grid;
+      align-items: center;
+      padding: 84px 0 64px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 46px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 11px;
+      border: 1px solid rgba(227,182,80,.28);
+      border-radius: 999px;
+      color: var(--gold-2);
+      background: rgba(227,182,80,.08);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow i {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(227,182,80,.10);
+    }
+    h1 {
+      max-width: 850px;
+      margin: 20px 0 16px;
+      font-size: clamp(3rem, 7vw, 6.7rem);
+      line-height: .92;
+      letter-spacing: -.055em;
+    }
+    .hero h1 span {
+      display: block;
+      color: var(--gold-2);
+      text-shadow: 0 0 35px rgba(227,182,80,.18);
+    }
+    .hero-copy {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 16px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      font-weight: 800;
+      font-size: .92rem;
+      transition: .18s ease;
+    }
+    .btn.primary {
+      color: #111713;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      border-color: transparent;
+    }
+    .btn.secondary { background: rgba(255,255,255,.045); }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
+
+    .water-orbit {
+      width: min(100%, 360px);
+      aspect-ratio: 1;
+      justify-self: end;
+      border-radius: 50%;
+      position: relative;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.08);
+      background: radial-gradient(circle, rgba(255,255,255,.045), transparent 65%);
+    }
+    .water-orbit::before,
+    .water-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,.12);
+    }
+    .water-orbit::after { inset: 30%; }
+    .water-core {
+      width: 110px; aspect-ratio: 1;
+      border-radius: 28px 28px 48% 48%;
+      transform: rotate(45deg);
+      background: linear-gradient(145deg, rgba(137,191,212,.95), rgba(102,198,177,.62));
+      box-shadow: 0 0 50px rgba(137,191,212,.2);
+      display: grid; place-items: center;
+    }
+    .water-core span { transform: rotate(-45deg); font-size: 2rem; }
+    .orb {
+      position: absolute;
+      display: grid; place-items: center;
+      width: 68px; aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(21,28,26,.9);
+      box-shadow: var(--shadow);
+      font-size: 1.4rem;
+    }
+    .orb.one { top: 1%; left: 44%; }
+    .orb.two { right: 3%; bottom: 18%; }
+    .orb.three { left: 3%; bottom: 18%; }
+
+    .section {
+      padding: 72px 0;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+    .section-kicker {
+      margin: 0 0 7px;
+      color: var(--gold);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: .76rem;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .section-desc {
+      max-width: 620px;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .media-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(21,28,26,.9);
+      box-shadow: var(--shadow);
+    }
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 56px;
+      padding: 10px 14px 10px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+    }
+    .panel-title span:first-child {
+      width: 30px; height: 30px; display: grid; place-items: center;
+      border-radius: 9px;
+      background: rgba(227,182,80,.12);
+      color: var(--gold-2);
+    }
+    .file-link {
+      font-size: .82rem;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      border-radius: 9px;
+    }
+    .file-link:hover { color: var(--text); background: rgba(255,255,255,.04); }
+
+    .pdf-frame {
+      display: block;
+      width: 100%;
+      height: min(76vh, 820px);
+      min-height: 520px;
+      border: 0;
+      background: #222;
+    }
+
+    .video-wrap {
+      background: #080a09;
+      aspect-ratio: 16/9;
+      display: grid;
+      place-items: center;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #070908;
+    }
+    .youtube-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .youtube-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #070908;
+    }
+    .youtube-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(227,182,80,.12), transparent 38%),
+        #080a09;
+      color: var(--text);
+    }
+    .youtube-placeholder[hidden] { display: none; }
+    .youtube-placeholder > div { max-width: 520px; }
+    .youtube-placeholder strong {
+      display: block;
+      margin-top: 14px;
+      font-size: 1.25rem;
+    }
+    .youtube-placeholder p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .youtube-placeholder code {
+      color: var(--gold-2);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .youtube-icon {
+      width: 70px;
+      aspect-ratio: 1;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #ff0033;
+      color: white;
+      font-size: 1.45rem;
+      box-shadow: 0 15px 36px rgba(255,0,51,.25);
+    }
+    .video-note {
+      color: var(--muted);
+      padding: 13px 18px 16px;
+      font-size: .88rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .9fr;
+      gap: 14px;
+      margin: 28px 0 18px;
+    }
+    .stat {
+      min-height: 135px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(27,37,34,.95), rgba(18,24,22,.95));
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat strong {
+      font-size: 2.3rem;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+    .stat small { color: var(--muted); font-size: .82rem; }
+    .progress {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      margin-top: 12px;
+    }
+    .progress > span {
+      display: block;
+      width: 97.8%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+
+    .req-tools {
+      position: sticky;
+      top: 76px;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin: 16px 0 18px;
+      padding: 10px;
+      border-radius: 17px;
+      border: 1px solid var(--line);
+      background: rgba(14,19,18,.86);
+      backdrop-filter: blur(14px);
+    }
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.035);
+    }
+    .search input {
+      width: 100%;
+      color: var(--text);
+      background: transparent;
+      border: 0;
+      outline: 0;
+    }
+    .filters { display: flex; gap: 8px; }
+    .filter-btn {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(255,255,255,.035);
+      padding: 0 13px;
+      font-weight: 800;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .filter-btn.active {
+      color: #0f1513;
+      border-color: transparent;
+      background: var(--gold-2);
+    }
+
+    .requirement-group {
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(21,28,26,.72);
+      overflow: hidden;
+    }
+    .group-header {
+      width: 100%;
+      min-height: 74px;
+      padding: 15px 18px;
+      border: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .group-header small {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+    }
+    .group-header strong { font-size: 1.02rem; }
+    .group-meta { color: var(--muted); font-size: .78rem; }
+    .group-meta b {
+      display: inline-grid; place-items: center;
+      width: 28px; height: 28px; margin-left: 8px;
+      border-radius: 8px; background: rgba(255,255,255,.05);
+      transition: transform .2s ease;
+    }
+    .requirement-group.collapsed .group-meta b { transform: rotate(-90deg); }
+    .requirement-group.collapsed .group-grid { display: none; }
+
+    .group-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .requirement-card {
+      min-height: 112px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      padding: 16px 18px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .requirement-card:nth-child(2n) { border-right: 0; }
+    .req-number {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      border-radius: 13px;
+      background: rgba(255,255,255,.045);
+      color: var(--gold-2);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .req-copy p { margin: 0 0 12px; font-size: .92rem; }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .status-badge.done { color: #aef0d4; background: rgba(102,198,177,.1); }
+    .status-badge.partial { color: #ffe2a3; background: rgba(227,182,80,.12); }
+    .requirement-card[hidden], .requirement-group[hidden] { display: none !important; }
+
+    .footer {
+      padding: 36px 0 48px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: .86rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 58px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .water-orbit { justify-self: center; width: min(78vw, 330px); }
+      .section-head { align-items: start; flex-direction: column; }
+      .stats { grid-template-columns: 1fr; }
+      .group-grid { grid-template-columns: 1fr; }
+      .requirement-card, .requirement-card:nth-child(2n) { border-right: 0; }
+      .req-tools { grid-template-columns: 1fr; top: 72px; }
+      .filters { overflow-x: auto; padding-bottom: 2px; }
+      .filter-btn { white-space: nowrap; }
+      .pdf-frame { height: 68vh; min-height: 460px; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(calc(100% - 22px), var(--max)); }
+      .hero { min-height: auto; padding: 46px 0 34px; }
+      h1 { font-size: clamp(2.7rem, 15vw, 4.5rem); }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .section { padding: 52px 0; }
+      .media-panel { border-radius: 16px; }
+      .panel-top { align-items: flex-start; }
+      .pdf-frame { min-height: 410px; height: 64vh; }
+      .requirement-card { grid-template-columns: 42px 1fr; padding: 14px; }
+      .req-number { width: 40px; height: 40px; border-radius: 11px; }
+      .group-header { min-height: 68px; padding: 13px 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark">K</span>
+        <span>KUSI · PORTAFOLIO</span>
+      </a>
+      <div class="nav-links">
+        <a href="#autoevaluacion">Autoevaluación</a>
+        <a href="#trailer">Tráiler</a>
+        <a href="#gdd">GDD</a>
+        <a href="#requisitos">Requisitos</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><i></i> Portafolio de evaluación</span>
+        <h1>Kusi <span>Las Tres Aguas</span></h1>
+        <p class="hero-copy">
+          Videojuego 2D de plataformas, exploración y aventura narrativa inspirado en los Andes bolivianos.
+          Esta página reúne la autoevaluación, el tráiler, el documento de diseño y el cumplimiento de requisitos.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#autoevaluacion">Ver autoevaluación ↓</a>
+          <a class="btn secondary" href="#requisitos">Ver 92 requisitos</a>
+        </div>
+      </div>
+
+      <div class="water-orbit" aria-label="Representación de las tres aguas sagradas">
+        <div class="water-core"><span>💧</span></div>
+        <div class="orb one" title="Chhijchi Uma">❄️</div>
+        <div class="orb two" title="Jallu Uma">🌧️</div>
+        <div class="orb three" title="Juyphi Uma">🧊</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="autoevaluacion">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">01 · Documento</p>
+            <h2>Autoevaluación</h2>
+            <p class="section-desc">Documento de autoevaluación del proyecto integrado directamente en la página.</p>
+          </div>
+        </div>
+
+        <div class="media-panel">
+          <div class="panel-top">
+            <div class="panel-title"><span>PDF</span><span>Autoevaluación del videojuego</span></div>
+            <a class="file-link" href="assets/autoevaluacion.pdf" target="_blank" rel="noopener">Abrir PDF ↗</a>
+          </div>
+          <object class="pdf-frame" data="assets/autoevaluacion.pdf#view=FitH" type="application/pdf">
+            <iframe class="pdf-frame" src="assets/autoevaluacion.pdf#view=FitH" title="Autoevaluación en PDF"></iframe>
+          </object>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trailer">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">02 · Video</p>
+            <h2>Tráiler</h2>
+            <p class="section-desc">Presentación audiovisual del mundo, las mecánicas y el recorrido de Kusi.</p>
+          </div>
+        </div>
+
+        <div class="media-panel">
+          <div class="panel-top">
+            <div class="panel-title"><span>▶</span><span>Tráiler oficial</span></div>
+            <a class="file-link" id="youtubeOpenLink" href="https://www.youtube.com/" target="_blank" rel="noopener">Ver en YouTube ↗</a>
+          </div>
+          <div class="video-wrap youtube-wrap">
+            <iframe
+              id="youtubeTrailer"
+              title="Tráiler de Kusi — Las Tres Aguas"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+            <div class="youtube-placeholder" id="youtubePlaceholder">
+              <div>
+                <span class="youtube-icon">▶</span>
+                <strong>Tráiler en YouTube</strong>
+                <p>Configura el enlace de YouTube en la variable <code>YOUTUBE_TRAILER_URL</code> del archivo index.html.</p>
+              </div>
+            </div>
+          </div>
+          <div class="video-note">El video se carga desde YouTube y mantiene automáticamente la proporción 16:9.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gdd">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">03 · Documento</p>
+            <h2>Game Design Document</h2>
+            <p class="section-desc">Diseño del juego, narrativa, mecánicas, niveles, sistemas y dirección visual.</p>
+          </div>
+        </div>
+
+        <div class="media-panel">
+          <div class="panel-top">
+            <div class="panel-title"><span>GDD</span><span>Documento de Diseño del Juego</span></div>
+            <a class="file-link" href="assets/GDD.pdf" target="_blank" rel="noopener">Abrir PDF ↗</a>
+          </div>
+          <object class="pdf-frame" data="assets/GDD.pdf#view=FitH" type="application/pdf">
+            <iframe class="pdf-frame" src="assets/GDD.pdf#view=FitH" title="GDD en PDF"></iframe>
+          </object>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="requisitos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">04 · Verificación</p>
+            <h2>Requisitos cumplidos</h2>
+            <p class="section-desc">
+              Los 92 requisitos del proyecto están organizados por categoría. Los puntos 55 y 64 se muestran como cumplimiento parcial.
+            </p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <small>Progreso de cumplimiento completo</small>
+            <div>
+              <strong>97.8%</strong>
+              <div class="progress" aria-label="97.8 por ciento de cumplimiento"><span></span></div>
+            </div>
+          </div>
+          <div class="stat">
+            <small>Requisitos cumplidos</small>
+            <strong>90 / 92</strong>
+          </div>
+          <div class="stat">
+            <small>Cumplimiento parcial</small>
+            <strong>2</strong>
+          </div>
+        </div>
+
+        <div class="req-tools">
+          <label class="search">
+            <span>⌕</span>
+            <input id="reqSearch" type="search" placeholder="Buscar requisito, número o categoría…" autocomplete="off" />
+          </label>
+          <div class="filters" aria-label="Filtrar requisitos">
+            <button class="filter-btn active" data-filter="all" type="button">Todos</button>
+            <button class="filter-btn" data-filter="done" type="button">Cumplidos</button>
+            <button class="filter-btn" data-filter="partial" type="button">Parciales</button>
+          </div>
+        </div>
+
+        <div id="requirementsList">
+          
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Tipo de Juego</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="1 tipo de juego el juego es 2d con vista lateral">
+            <div class="req-number">01</div>
+            <div class="req-copy">
+              <p>El juego es 2D con vista lateral</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="2 tipo de juego es un juego de plataformas">
+            <div class="req-number">02</div>
+            <div class="req-copy">
+              <p>Es un juego de plataformas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="3 tipo de juego incluye exploración">
+            <div class="req-number">03</div>
+            <div class="req-copy">
+              <p>Incluye exploración</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="4 tipo de juego es una aventura narrativa">
+            <div class="req-number">04</div>
+            <div class="req-copy">
+              <p>Es una aventura narrativa</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="5 tipo de juego tiene identidad cultural andina propia">
+            <div class="req-number">05</div>
+            <div class="req-copy">
+              <p>Tiene identidad cultural andina propia</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Motor / Tecnología</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="6 motor / tecnología sistema de escenas implementado">
+            <div class="req-number">06</div>
+            <div class="req-copy">
+              <p>Sistema de escenas implementado</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="7 motor / tecnología física 2d (gravedad, colisiones)">
+            <div class="req-number">07</div>
+            <div class="req-copy">
+              <p>Física 2D (gravedad, colisiones)</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="8 motor / tecnología sistema de colisiones funcional">
+            <div class="req-number">08</div>
+            <div class="req-copy">
+              <p>Sistema de colisiones funcional</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="9 motor / tecnología variables de estado del juego">
+            <div class="req-number">09</div>
+            <div class="req-copy">
+              <p>Variables de estado del juego</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="10 motor / tecnología sistema de objetos / entidades">
+            <div class="req-number">10</div>
+            <div class="req-copy">
+              <p>Sistema de objetos / entidades</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Historia</strong>
+          </span>
+          <span class="group-meta">4 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="11 historia el jugador controla a kusi, aprendiz de yatiri">
+            <div class="req-number">11</div>
+            <div class="req-copy">
+              <p>El jugador controla a Kusi, aprendiz de yatiri</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="12 historia la historia presenta la crisis de lluvias/heladas/granizadas">
+            <div class="req-number">12</div>
+            <div class="req-copy">
+              <p>La historia presenta la crisis de lluvias/heladas/granizadas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="13 historia existen las tres aguas: chhijchi uma, jallu uma y juyphi uma">
+            <div class="req-number">13</div>
+            <div class="req-copy">
+              <p>Existen las tres aguas: Chhijchi Uma, Jallu Uma y Juyphi Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="14 historia kusi sube la montaña y restaura el equilibrio">
+            <div class="req-number">14</div>
+            <div class="req-copy">
+              <p>Kusi sube la montaña y restaura el equilibrio</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Personaje Kusi</strong>
+          </span>
+          <span class="group-meta">8 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="15 personaje kusi personaje 2d llamado kusi con identidad andina">
+            <div class="req-number">15</div>
+            <div class="req-copy">
+              <p>Personaje 2D llamado Kusi con identidad andina</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="16 personaje kusi estilo pixel art moderno">
+            <div class="req-number">16</div>
+            <div class="req-copy">
+              <p>Estilo pixel art moderno</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="17 personaje kusi animación idle (≥4 frames)">
+            <div class="req-number">17</div>
+            <div class="req-copy">
+              <p>Animación Idle (≥4 frames)</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="18 personaje kusi animación walk">
+            <div class="req-number">18</div>
+            <div class="req-copy">
+              <p>Animación Walk</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="19 personaje kusi animación run">
+            <div class="req-number">19</div>
+            <div class="req-copy">
+              <p>Animación Run</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="20 personaje kusi animación jump">
+            <div class="req-number">20</div>
+            <div class="req-copy">
+              <p>Animación Jump</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="21 personaje kusi animación fall">
+            <div class="req-number">21</div>
+            <div class="req-copy">
+              <p>Animación Fall</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="22 personaje kusi animación landing">
+            <div class="req-number">22</div>
+            <div class="req-copy">
+              <p>Animación Landing</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>NPC Mallku Yatiri</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="23 npc mallku yatiri existe el anciano mentor mallku yatiri">
+            <div class="req-number">23</div>
+            <div class="req-copy">
+              <p>Existe el anciano mentor Mallku Yatiri</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="24 npc mallku yatiri el npc introduce la historia">
+            <div class="req-number">24</div>
+            <div class="req-copy">
+              <p>El NPC introduce la historia</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="25 npc mallku yatiri el npc da la misión">
+            <div class="req-number">25</div>
+            <div class="req-copy">
+              <p>El NPC da la misión</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="26 npc mallku yatiri aparece botón [e] para hablar">
+            <div class="req-number">26</div>
+            <div class="req-copy">
+              <p>Aparece botón [E] para hablar</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="27 npc mallku yatiri el diálogo activa los objetivos">
+            <div class="req-number">27</div>
+            <div class="req-copy">
+              <p>El diálogo activa los objetivos</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Mecánica Movimiento</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="28 mecánica movimiento caminar izq/der con [a]/[d]">
+            <div class="req-number">28</div>
+            <div class="req-copy">
+              <p>Caminar izq/der con [A]/[D]</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="29 mecánica movimiento correr (distinta velocidad)">
+            <div class="req-number">29</div>
+            <div class="req-copy">
+              <p>Correr (distinta velocidad)</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="30 mecánica movimiento saltar con [espacio]">
+            <div class="req-number">30</div>
+            <div class="req-copy">
+              <p>Saltar con [ESPACIO]</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="31 mecánica movimiento interactuar con [e]">
+            <div class="req-number">31</div>
+            <div class="req-copy">
+              <p>Interactuar con [E]</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="32 mecánica movimiento controles funcionan correctamente">
+            <div class="req-number">32</div>
+            <div class="req-copy">
+              <p>Controles funcionan correctamente</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Mecánica Plataformas</strong>
+          </span>
+          <span class="group-meta">4 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="33 mecánica plataformas suelos sólidos">
+            <div class="req-number">33</div>
+            <div class="req-copy">
+              <p>Suelos sólidos</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="34 mecánica plataformas rocas y plataformas">
+            <div class="req-number">34</div>
+            <div class="req-copy">
+              <p>Rocas y plataformas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="35 mecánica plataformas zonas elevadas">
+            <div class="req-number">35</div>
+            <div class="req-copy">
+              <p>Zonas elevadas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="36 mecánica plataformas colisión correcta con plataformas">
+            <div class="req-number">36</div>
+            <div class="req-copy">
+              <p>Colisión correcta con plataformas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Mecánica Recolección</strong>
+          </span>
+          <span class="group-meta">4 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="37 mecánica recolección objeto chhijchi uma recolectable">
+            <div class="req-number">37</div>
+            <div class="req-copy">
+              <p>Objeto Chhijchi Uma recolectable</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="38 mecánica recolección objeto jallu uma recolectable">
+            <div class="req-number">38</div>
+            <div class="req-copy">
+              <p>Objeto Jallu Uma recolectable</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="39 mecánica recolección objeto juyphi uma recolectable">
+            <div class="req-number">39</div>
+            <div class="req-copy">
+              <p>Objeto Juyphi Uma recolectable</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="40 mecánica recolección contador actualizado al recoger agua">
+            <div class="req-number">40</div>
+            <div class="req-copy">
+              <p>Contador actualizado al recoger agua</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Mecánica Diálogo</strong>
+          </span>
+          <span class="group-meta">4 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="41 mecánica diálogo caja de texto de diálogo">
+            <div class="req-number">41</div>
+            <div class="req-copy">
+              <p>Caja de texto de diálogo</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="42 mecánica diálogo muestra el nombre del personaje">
+            <div class="req-number">42</div>
+            <div class="req-copy">
+              <p>Muestra el nombre del personaje</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="43 mecánica diálogo muestra el mensaje">
+            <div class="req-number">43</div>
+            <div class="req-copy">
+              <p>Muestra el mensaje</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="44 mecánica diálogo se puede avanzar/continuar">
+            <div class="req-number">44</div>
+            <div class="req-copy">
+              <p>Se puede avanzar/continuar</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Nivel 1 — Comunidad</strong>
+          </span>
+          <span class="group-meta">6 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="45 nivel 1 — comunidad objetivo: aprender controles">
+            <div class="req-number">45</div>
+            <div class="req-copy">
+              <p>Objetivo: aprender controles</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="46 nivel 1 — comunidad presenta el problema narrativo">
+            <div class="req-number">46</div>
+            <div class="req-copy">
+              <p>Presenta el problema narrativo</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="47 nivel 1 — comunidad contiene al npc mallku yatiri">
+            <div class="req-number">47</div>
+            <div class="req-copy">
+              <p>Contiene al NPC Mallku Yatiri</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="48 nivel 1 — comunidad funciona como tutorial">
+            <div class="req-number">48</div>
+            <div class="req-copy">
+              <p>Funciona como tutorial</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="49 nivel 1 — comunidad mallku entrega la misión al final">
+            <div class="req-number">49</div>
+            <div class="req-copy">
+              <p>Mallku entrega la misión al final</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="50 nivel 1 — comunidad escenario con estética andina">
+            <div class="req-number">50</div>
+            <div class="req-copy">
+              <p>Escenario con estética andina</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Nivel 2 — Sendero</strong>
+          </span>
+          <span class="group-meta">7 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="51 nivel 2 — sendero objetivo: subir la montaña">
+            <div class="req-number">51</div>
+            <div class="req-copy">
+              <p>Objetivo: subir la montaña</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="52 nivel 2 — sendero montañas en el escenario">
+            <div class="req-number">52</div>
+            <div class="req-copy">
+              <p>Montañas en el escenario</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="53 nivel 2 — sendero plataformas para escalar">
+            <div class="req-number">53</div>
+            <div class="req-copy">
+              <p>Plataformas para escalar</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="54 nivel 2 — sendero obstáculo: granizada/proyectiles">
+            <div class="req-number">54</div>
+            <div class="req-copy">
+              <p>Obstáculo: granizada/proyectiles</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="partial" data-search="55 nivel 2 — sendero zona congelada que reduce velocidad">
+            <div class="req-number">55</div>
+            <div class="req-copy">
+              <p>Zona congelada que reduce velocidad</p>
+              <span class="status-badge partial"><span>◐</span>Parcial</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="56 nivel 2 — sendero permite encontrar las aguas sagradas">
+            <div class="req-number">56</div>
+            <div class="req-copy">
+              <p>Permite encontrar las aguas sagradas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="57 nivel 2 — sendero continuidad narrativa con nivel 1">
+            <div class="req-number">57</div>
+            <div class="req-copy">
+              <p>Continuidad narrativa con nivel 1</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Nivel 3 — Santuario</strong>
+          </span>
+          <span class="group-meta">6 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="58 nivel 3 — santuario objetivo: restaurar el equilibrio">
+            <div class="req-number">58</div>
+            <div class="req-copy">
+              <p>Objetivo: restaurar el equilibrio</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="59 nivel 3 — santuario templo antiguo con símbolos ancestrales">
+            <div class="req-number">59</div>
+            <div class="req-copy">
+              <p>Templo antiguo con símbolos ancestrales</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="60 nivel 3 — santuario zona final del juego">
+            <div class="req-number">60</div>
+            <div class="req-copy">
+              <p>Zona final del juego</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="61 nivel 3 — santuario altar para colocar chhijchi uma">
+            <div class="req-number">61</div>
+            <div class="req-copy">
+              <p>Altar para colocar Chhijchi Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="62 nivel 3 — santuario altar para colocar jallu uma">
+            <div class="req-number">62</div>
+            <div class="req-copy">
+              <p>Altar para colocar Jallu Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="63 nivel 3 — santuario altar para colocar juyphi uma">
+            <div class="req-number">63</div>
+            <div class="req-copy">
+              <p>Altar para colocar Juyphi Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Sistema de Vida</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="partial" data-search="64 sistema de vida sistema de vida con corazones (gdd pedía 3, hay 5)">
+            <div class="req-number">64</div>
+            <div class="req-copy">
+              <p>Sistema de vida con corazones (GDD pedía 3, hay 5)</p>
+              <span class="status-badge partial"><span>◐</span>Parcial</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="65 sistema de vida enemigos/granizo causan daño">
+            <div class="req-number">65</div>
+            <div class="req-copy">
+              <p>Enemigos/granizo causan daño</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="66 sistema de vida caídas al vacío causan daño">
+            <div class="req-number">66</div>
+            <div class="req-copy">
+              <p>Caídas al vacío causan daño</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="67 sistema de vida pantalla de derrota al llegar a 0">
+            <div class="req-number">67</div>
+            <div class="req-copy">
+              <p>Pantalla de derrota al llegar a 0</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="68 sistema de vida botón de reintentar">
+            <div class="req-number">68</div>
+            <div class="req-copy">
+              <p>Botón de Reintentar</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Sistema de Victoria</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="69 sistema de victoria ganar al conseguir las 3 aguas">
+            <div class="req-number">69</div>
+            <div class="req-copy">
+              <p>Ganar al conseguir las 3 aguas</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="70 sistema de victoria ganar al llegar al santuario">
+            <div class="req-number">70</div>
+            <div class="req-copy">
+              <p>Ganar al llegar al santuario</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="71 sistema de victoria completar el ritual final (3 altares)">
+            <div class="req-number">71</div>
+            <div class="req-copy">
+              <p>Completar el ritual final (3 altares)</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="72 sistema de victoria pantalla/mensaje de victoria">
+            <div class="req-number">72</div>
+            <div class="req-copy">
+              <p>Pantalla/mensaje de victoria</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="73 sistema de victoria mensaje hace referencia al equilibrio restaurado">
+            <div class="req-number">73</div>
+            <div class="req-copy">
+              <p>Mensaje hace referencia al equilibrio restaurado</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Diseño Visual</strong>
+          </span>
+          <span class="group-meta">7 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="74 diseño visual estilo pixel art 2d">
+            <div class="req-number">74</div>
+            <div class="req-copy">
+              <p>Estilo pixel art 2D</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="75 diseño visual inspiración visual en los andes bolivianos">
+            <div class="req-number">75</div>
+            <div class="req-copy">
+              <p>Inspiración visual en los Andes bolivianos</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="76 diseño visual montañas, textiles y naturaleza andina">
+            <div class="req-number">76</div>
+            <div class="req-copy">
+              <p>Montañas, textiles y naturaleza andina</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="77 diseño visual comunidad con colores cálidos">
+            <div class="req-number">77</div>
+            <div class="req-copy">
+              <p>Comunidad con colores cálidos</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="78 diseño visual montaña con tonos azules/verdes">
+            <div class="req-number">78</div>
+            <div class="req-copy">
+              <p>Montaña con tonos azules/verdes</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="79 diseño visual santuario con estética mística y antigua">
+            <div class="req-number">79</div>
+            <div class="req-copy">
+              <p>Santuario con estética mística y antigua</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="80 diseño visual personajes con identidad visual andina">
+            <div class="req-number">80</div>
+            <div class="req-copy">
+              <p>Personajes con identidad visual andina</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>HUD / Interfaz</strong>
+          </span>
+          <span class="group-meta">7 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="81 hud / interfaz retrato de kusi arriba a la izquierda">
+            <div class="req-number">81</div>
+            <div class="req-copy">
+              <p>Retrato de Kusi arriba a la izquierda</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="82 hud / interfaz vida del jugador en el hud">
+            <div class="req-number">82</div>
+            <div class="req-copy">
+              <p>Vida del jugador en el HUD</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="83 hud / interfaz contador de chhijchi uma">
+            <div class="req-number">83</div>
+            <div class="req-copy">
+              <p>Contador de Chhijchi Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="84 hud / interfaz contador de jallu uma">
+            <div class="req-number">84</div>
+            <div class="req-copy">
+              <p>Contador de Jallu Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="85 hud / interfaz contador de juyphi uma">
+            <div class="req-number">85</div>
+            <div class="req-copy">
+              <p>Contador de Juyphi Uma</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="86 hud / interfaz objetivo actual arriba a la derecha">
+            <div class="req-number">86</div>
+            <div class="req-copy">
+              <p>Objetivo actual arriba a la derecha</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="87 hud / interfaz objetivo se actualiza dinámicamente">
+            <div class="req-number">87</div>
+            <div class="req-copy">
+              <p>Objetivo se actualiza dinámicamente</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+      <section class="requirement-group" data-group>
+        <button class="group-header" type="button" aria-expanded="true">
+          <span>
+            <small>CATEGORÍA</small>
+            <strong>Estructura del Proyecto</strong>
+          </span>
+          <span class="group-meta">5 requisitos <b>⌄</b></span>
+        </button>
+        <div class="group-grid">
+          
+          <article class="requirement-card" data-status="done" data-search="88 estructura del proyecto carpeta/módulo de escenas (niveles)">
+            <div class="req-number">88</div>
+            <div class="req-copy">
+              <p>Carpeta/módulo de escenas (niveles)</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="89 estructura del proyecto carpeta/módulo de personajes">
+            <div class="req-number">89</div>
+            <div class="req-copy">
+              <p>Carpeta/módulo de personajes</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="90 estructura del proyecto carpeta/módulo de ui">
+            <div class="req-number">90</div>
+            <div class="req-copy">
+              <p>Carpeta/módulo de UI</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="91 estructura del proyecto carpeta/módulo de audio">
+            <div class="req-number">91</div>
+            <div class="req-copy">
+              <p>Carpeta/módulo de Audio</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+          <article class="requirement-card" data-status="done" data-search="92 estructura del proyecto código organizado modularmente">
+            <div class="req-number">92</div>
+            <div class="req-copy">
+              <p>Código organizado modularmente</p>
+              <span class="status-badge done"><span>✓</span>Cumplido</span>
+            </div>
+          </article>
+        
+        </div>
+      </section>
+    
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Kusi — Las Tres Aguas · Portafolio de evaluación del videojuego
+    </div>
+  </footer>
+
+  <script>
+    /*
+      PEGA AQUÍ EL ENLACE DE TU TRÁILER DE YOUTUBE.
+      Ejemplos válidos:
+      https://www.youtube.com/watch?v=dQw4w9WgXcQ
+      https://youtu.be/dQw4w9WgXcQ
+      https://www.youtube.com/shorts/dQw4w9WgXcQ
+    */
+    const YOUTUBE_TRAILER_URL = "https://youtu.be/SaHDWxuHpdU";
+
+    function getYouTubeId(url) {
+      if (!url || url.includes("PEGA_AQUI")) return null;
+      try {
+        const parsed = new URL(url);
+        if (parsed.hostname.includes("youtu.be")) {
+          return parsed.pathname.split("/").filter(Boolean)[0] || null;
+        }
+        if (parsed.pathname.startsWith("/shorts/") || parsed.pathname.startsWith("/embed/")) {
+          return parsed.pathname.split("/").filter(Boolean)[1] || null;
+        }
+        return parsed.searchParams.get("v");
+      } catch {
+        return null;
+      }
+    }
+
+    const trailerId = getYouTubeId(YOUTUBE_TRAILER_URL);
+    const trailerFrame = document.querySelector('#youtubeTrailer');
+    const trailerPlaceholder = document.querySelector('#youtubePlaceholder');
+    const trailerLink = document.querySelector('#youtubeOpenLink');
+
+    if (trailerId) {
+      trailerFrame.src = `https://www.youtube-nocookie.com/embed/${trailerId}?rel=0`;
+      trailerPlaceholder.hidden = true;
+      trailerLink.href = YOUTUBE_TRAILER_URL;
+    }
+
+    const search = document.querySelector('#reqSearch');
+    const cards = [...document.querySelectorAll('.requirement-card')];
+    const groups = [...document.querySelectorAll('[data-group]')];
+    const filters = [...document.querySelectorAll('.filter-btn')];
+    let currentFilter = 'all';
+
+    function applyFilters() {
+      const term = search.value.trim().toLowerCase();
+
+      cards.forEach(card => {
+        const matchesText = !term || card.dataset.search.includes(term);
+        const matchesStatus = currentFilter === 'all' || card.dataset.status === currentFilter;
+        card.hidden = !(matchesText && matchesStatus);
+      });
+
+      groups.forEach(group => {
+        const visibleCards = [...group.querySelectorAll('.requirement-card')].filter(card => !card.hidden);
+        group.hidden = visibleCards.length === 0;
+        if (term || currentFilter !== 'all') group.classList.remove('collapsed');
+      });
+    }
+
+    search.addEventListener('input', applyFilters);
+
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll('.group-header').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.closest('.requirement-group');
+        group.classList.toggle('collapsed');
+        btn.setAttribute('aria-expanded', String(!group.classList.contains('collapsed')));
+      });
+    });
+  </script>
+</body>
+</html>
